@@ -18,11 +18,17 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
     /////////
-//    @OneToOne
-//    @JoinColumn(name = "carId")
-//    private Car car;
+    @OneToOne
+    @JoinColumn(name = "carId")
+    private Car car;
+
+    public Car getCar(Car car){
+        return car;
+    }
     ////////
+
     public User() {
     }
 
@@ -30,6 +36,13 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public User(String firstName, String lastName, String email, Car car) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.car=car;
     }
 
     public Long getId() {

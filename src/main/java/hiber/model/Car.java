@@ -14,25 +14,24 @@ public class Car {
     private String name;
 
     @Column(name = "series")
-    private int series;
+    private Integer series;
 
-    ///////////
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name="id")
-//    private User user;
-//
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-///////////
+    @OneToOne(mappedBy = "car")//В классе, который не владеет связью в аннотации небходимо указать настройку mappedBy
+    private User user;
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carId=" + carId +
+                ", name='" + name + '\'' +
+                ", series=" + series +
+                "}";
+    }
+
     public Car() {
     }
 
-    public Car(Long carId, String name, int series) {
+    public Car(Long carId, String name, Integer series) {
         this.carId = carId;
         this.name = name;
         this.series = series;
@@ -58,8 +57,9 @@ public class Car {
         return series;
     }
 
-    public void setSeries(int series) {
+    public void setSeries(Integer series) {
         this.series = series;
     }
+
 }
 

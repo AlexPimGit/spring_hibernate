@@ -1,8 +1,7 @@
 package hiber.dao;
 
-import hiber.model.User;
+import hiber.model.Car;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,29 +11,18 @@ import java.util.List;
 @Repository//указывает, что класс используется для работы с поиском, получением и хранением данных.
 // Аннотация может использоваться для реализации шаблона DAO. Для указания контейнеру на класс-бин
 // может использоваться любая из аннотаций Controller, Repository, Service (усточняет смысловую нагрузку)
-public class UserDaoImp implements UserDao {
-
+public class CarDaoImpl implements CarDao {
     @Autowired// автоматически подтягивает бин-объект sessionFactory из метода import org.hibernate.SessionFactory;
     private SessionFactory sessionFactory;
 
     @Override
-    public void add(User user) {
-        sessionFactory.getCurrentSession().save(user);
+    public void add(Car car) {
+        sessionFactory.getCurrentSession().save(car);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public List<User> listUsers() {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("FROM User");
+    public List<Car> listCar() {
+        TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("FROM Car");
         return query.getResultList();
-    }
-
-    @Override
-    public User getUserForCarNameAndSeries(String name, Integer series) {
-        Query query = sessionFactory.getCurrentSession().createQuery("FROM User WHERE name= :nameParam ");
-        query.setParameter("nameParam", name);
-        query.setParameter("seriesParam", series);
-        User user = (User) query.uniqueResult();
-        return user;
     }
 }

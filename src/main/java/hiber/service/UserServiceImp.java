@@ -11,19 +11,25 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
 
-   @Autowired
+   @Autowired// автоматически подтягивает бин-объект userDao из ???
    private UserDao userDao;
 
-   @Transactional
+   @Transactional//Перед исполнением метода помеченного данной аннотацией начинается транзакция,
+   // после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается
    @Override
    public void add(User user) {
       userDao.add(user);
    }
 
-   @Transactional(readOnly = true)
+   @Transactional(readOnly = true)// только чтение?? без изменения БД??
    @Override
    public List<User> listUsers() {
       return userDao.listUsers();
+   }
+   @Transactional(readOnly = true)// только чтение?? без изменения БД??
+   @Override
+   public User getUserForCarNameAndSeries(String name, Integer series) {
+      return userDao.getUserForCarNameAndSeries(name, series);
    }
 
 }
