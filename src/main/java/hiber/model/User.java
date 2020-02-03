@@ -5,17 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private Car car;
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +18,11 @@ public class User {
 
     @Column(name = "email")
     private String email;
-
+    /////////
+//    @OneToOne
+//    @JoinColumn(name = "carId")
+//    private Car car;
+    ////////
     public User() {
     }
 

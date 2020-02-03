@@ -8,7 +8,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long carId;
 
     @Column(name = "name")//можно не указывать Column name, если оно совпадает с названием столбца в таблице
     private String name;
@@ -16,33 +16,34 @@ public class Car {
     @Column(name = "series")
     private int series;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
+    ///////////
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="id")
+//    private User user;
+//
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+///////////
     public Car() {
     }
 
-    public Car(Long id, String name, int series) {
-        this.id = id;
+    public Car(Long carId, String name, int series) {
+        this.carId = carId;
         this.name = name;
         this.series = series;
     }
 
-    public Long getId() {
-        return id;
+    public Long getCarId() {
+        return carId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
     public String getName() {
