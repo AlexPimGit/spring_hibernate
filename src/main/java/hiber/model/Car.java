@@ -19,13 +19,12 @@ public class Car {
     @OneToOne(mappedBy = "car")//В классе, который не владеет связью в аннотации небходимо указать настройку mappedBy
     private User user;
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "carId=" + carId +
-                ", name='" + name + '\'' +
-                ", series=" + series +
-                "}";
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Car() {
@@ -60,6 +59,16 @@ public class Car {
     public void setSeries(Integer series) {
         this.series = series;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carId=" + carId +
+                ", name='" + name + '\'' +
+                ", series=" + series +
+                "}";
+    }
+
 
 }
 
